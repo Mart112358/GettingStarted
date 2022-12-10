@@ -1,0 +1,15 @@
+receivers:
+  otlp:
+    protocols:
+      http:     
+exporters:
+  logging:
+    loglevel: debug
+service:
+  telemetry:
+    logs:
+      level: debug
+  pipelines:
+    logs:
+      receivers: [otlp]
+      exporters: [logging]    
