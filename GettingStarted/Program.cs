@@ -13,7 +13,7 @@ using var loggerFactory = LoggerFactory.Create(builder =>
             .AddConsoleExporter()
             .AddOtlpExporter(config =>
             {
-                config.Endpoint = new Uri("http://localhost:4317");
+                config.Endpoint = new Uri("http://localhost:4318/v1/logs");
                 config.Protocol = OtlpExportProtocol.HttpProtobuf;
             });
     });
