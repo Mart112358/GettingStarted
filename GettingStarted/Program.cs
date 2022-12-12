@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Resources;
@@ -13,7 +14,7 @@ using var loggerFactory = LoggerFactory.Create(builder =>
             .AddConsoleExporter()
             .AddOtlpExporter(config =>
             {
-                config.Endpoint = new Uri("http://localhost:4318/v1/logs");
+                // config.Endpoint = new Uri("http://localhost:4318");
                 config.Protocol = OtlpExportProtocol.HttpProtobuf;
             });
     });
@@ -23,6 +24,6 @@ var logger = loggerFactory.CreateLogger<Program>();
 
 for (var i = 0; i < 100; i++)
 {
-    logger.LogInformation("{count}: Hello World!", i);
+    logger.LogError("{count}: Hello World!", i);
     await Task.Delay(1000);
 }
